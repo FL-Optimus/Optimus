@@ -29,4 +29,4 @@ and follow the instructions. After successfully creating a super user, you can r
 Django is designed to use models. In 'models.py' in the app directory ('Windturbine') you can create models for the different parts of the turbine.
 
 # Changing code
-For changing code, it is good practice to use different branches and not directly push it to the master code.
+For changing code, it is good practice to use different branches and not directly push it to the main code.

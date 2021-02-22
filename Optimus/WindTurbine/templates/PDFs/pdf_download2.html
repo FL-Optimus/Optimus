@@ -1,0 +1,7 @@
+{% load latexify %}
+{% include 'latexify/stylesheets.html' %}
+{% latexify context_arg %}
+{% latexify context_arg parse_math=True %}
+{% latexify 'c = \pm\sqrt{a^2 + b^2}' math_inline=True %}
+{% latexify 'c = \pm\sqrt{a^2 + b^2}' math_block=True %}
+{% include "latexify/scripts.html" %}

@@ -7,6 +7,11 @@ verify_ssl = true
 
 [packages]
 django = "*"
+django-mysql = "*"
+reportlab = "*"
+pillow = "*"
+xhtml2pdf = "*"
+django-latexify = "*"
 
 [requires]
 python_version = "3"

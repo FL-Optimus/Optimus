@@ -16,13 +16,18 @@
 </head>
 
 <body>
-
-    {% include "components/navbar.html" %}
+    {% block navbar %}
+    {% endblock navbar %}
     <div class="container">
         <h1>{{ title }}</h1>
         {% block main %}
-            <hr>
-            <h3>This info is not available yet</h3>
+            {% block description %}
+                <hr>
+                <h3>This info is not available yet</h3>
+            {% endblock description %}
+
+            {% block downloads %}
+            {% endblock downloads %}
         {% endblock main %}
     </div>
 

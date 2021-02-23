@@ -1,4 +1,9 @@
 <title>PDF Download Test</title>
+
+<div id="footerContent">
+    "Page: <pdf:pagenumber> / <pdf:pagecount>
+</div>
+
 <h1>Download this file</h1>
 
 <br>
@@ -8,3 +13,6 @@
 {{ customer.logo }}
 <br>
 {{ customer.logo.path }}
+
+<pdf:nextpage />
+<h1>Second page</h1>

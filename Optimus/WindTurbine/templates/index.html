@@ -1,13 +1,21 @@
 {% extends "base.html" %}
 
+{% block navbar %}
+    {% include "components/navbar.html" %}
+{% endblock navbar %}
+
 {% block main %}
+    {% block description %}
+        <p>Optimus X is a software for desigining a wind turbine. Multiple parts
+            can be designed and analyzed.
+        </p>
+    {% endblock description %}
 
-    <p>Optimus X is a software for desigining a wind turbine. Multiple parts
-        can be designed and analyzed.
-    </p>
 
-    <a href="/customers">
-        <button class="btn btn-binary">Download</button>
-    </a>
+    {% block downloads %}
+        <a href="/customers">
+            <button class="btn btn-binary">Download</button>
+        </a>
+    {% endblock downloads %}
 
 {% endblock main %}

@@ -12,7 +12,7 @@ def home(request):
 def render_pdf_view(request):
     customer = Customer.objects.first()
 
-    template_path = 'PDFs/pdf_download.html'
+    template_path = 'PDFs/pdf_download5.html'
     context = {'customer': customer}
     print(customer.__dict__)
     # Create a Django response object, and specify content_type as pdf

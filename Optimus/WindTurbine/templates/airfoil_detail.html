@@ -1,5 +1,51 @@
 {% extends "base.html" %}
+{% load static %}
+
 {% block main %}
-<h1>Airfoil view</h1>
-<p>{{airfoil}}</p>
+  <h1>Airfoil Description</h1>
+  <p>{{airfoil}}</p>
+  {% if properties %}
+    <table class="table table-hover">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Max Thickness [%]</th>
+          <th scope="col">At % Chord</th>
+          <th scope="col">Max Camber [%]</th>
+          <th scope="col">At % Chord</th>
+          <th scope="col">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <tr>
+          <td class="col-md-1">{{ airfoil.name }}</td>
+          <td class="col-md-2">{{ properties.thickness }}</td>
+          <td class="col-md-2">{{ properties.thickness_position }}</td>
+          <td class="col-md-2">{{ properties.camber }}</td>
+          <td class="col-md-2">{{ properties.camber_position }}</td>
+          <td class="col-md-2">
+            <a href="#">
+              <button class="glyphicon glyphicon-pencil btn btn-success"></button>
+            </a>
+            <a href="#">
+              <button class="glyphicon glyphicon-trash btn btn-danger"></button>
+            </a>
+          </td>
+        </tr>
+
+      </tbody>
+    </table>
+  {% else %}
+    There are no data for this airfoil yet.
+    <a href="/">
+      <button class="btn btn-binary">Calculate</button>
+    </a>
+  {% endif %}
+
+  <div class="Row">
+    <div class="Column">column 1</div>
+    <div class="Column">column 2</div>
+    <div class="Column">column 3</div>
+  </div>
 {% endblock main %}

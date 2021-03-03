@@ -6,6 +6,10 @@
       <tr>
         <th scope="col">Number</th>
         <th scope="col">Name</th>
+        <th scope="col">Thickness [%]</th>
+        <th scope="col">Thickness at % Chord</th>
+        <th scope="col">Camber [%]</th>
+        <th scope="col">Camber at % Chord</th>
         <th scope="col">Actions</th>
       </tr>
     </thead>
@@ -15,6 +19,10 @@
             <tr>
                 <td class="col-md-1">{{ forloop.counter }}</td>
                 <td class="col-md-1">{{ airfoil.name }}</td>
+                <td class="col-md-1">{{ airfoil.thickness }}</td>
+                <td class="col-md-2">{{ airfoil.thickness_loc }}</td>
+                <td class="col-md-1">{{ airfoil.camber }}</td>
+                <td class="col-md-2">{{ airfoil.camber_loc }}</td>
                 <td class="col-md-1">
                     <a href="/airfoils/{{airfoil.id}}">
                         <button class="glyphicon glyphicon-eye-open btn btn-primary"></button>

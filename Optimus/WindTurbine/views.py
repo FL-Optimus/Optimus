@@ -3,6 +3,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.template.loader import get_template
 
+from .airfoils.aerodynamics import get_properties
 from .models import Airfoil
 
 # Create your views here.
@@ -58,5 +59,6 @@ def airfoil_detail_view(request, id, calc=False):
         'airfoil': airfoil,
         'properties': properties,
     }
+    get_properties(airfoil.id)
 
     return render(request, 'airfoil_detail.html', context)

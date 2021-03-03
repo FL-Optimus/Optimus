@@ -7,6 +7,10 @@ class Airfoil(models.Model):
     name = models.CharField(max_length=255)
     geometry = models.JSONField()
     polar = models.JSONField()
+    thickness = models.DecimalField(max_digits=4, decimal_places=2)
+    thickness_loc = models.DecimalField(max_digits=4, decimal_places=2)
+    camber = models.DecimalField(max_digits=4, decimal_places=2)
+    camber_loc = models.DecimalField(max_digits=4, decimal_places=2)
 
     def __str__(self):
         return self.name

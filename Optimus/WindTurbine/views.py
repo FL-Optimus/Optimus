@@ -48,17 +48,22 @@ def get_airfoil_properties(airfoil):
     return properties
 
 
-def airfoil_detail_view(request, id, calc=False):
+def airfoil_detail_view(request, id):
     try:
         airfoil = Airfoil.objects.get(id=id)
     except Airfoil.DoesNotExist:
+        airfoil = get_properties(airfoil.id)
+    except:
         return render(request, '404.html')
-
-    properties = get_airfoil_properties(airfoil)
+    if airfoil.thickness and airfoil.camber:
+        thickness = airfoil.thickness
+        camber = airfoil.camber
+        properties = [thickness, camber]
+    else:
+        properties = get_airfoil_properties(airfoil)
     context = {
         'airfoil': airfoil,
         'properties': properties,
     }
-    get_properties(airfoil.id)
 
     return render(request, 'airfoil_detail.html', context)

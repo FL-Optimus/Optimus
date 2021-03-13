@@ -1,8 +1,13 @@
 {% extends "base.html" %}
-
+{% load static %}
 {% block main %}
 
     <p>The generator in a wind turbine converts the rotational energy from the rotor to electrical energy.
     </p>
+    {% for type in types %}
+        <a href="#">
+            <img src="{% static '/images/' %}{{type}}.PNG" alt="{{type}}">
+        </a>
+    {% endfor %}
 
 {% endblock main %}

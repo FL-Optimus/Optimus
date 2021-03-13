@@ -5,4 +5,8 @@ def home(request):
     return render(request, 'index.html')
 
 def generator_list_view(request):
-    return render(request, 'generator.html')
+    types = [f'Type{i}' for i in range(1,5)]
+    context = {
+        'types': types
+    }
+    return render(request, 'generator.html', context)

@@ -9,4 +9,10 @@ def generator_list_view(request):
     context = {
         'types': types
     }
-    return render(request, 'generator.html', context)
+    return render(request, 'components/generator/generator.html', context)
+
+def generator_detail_view(request, gen_type):
+    print(f'components/generator/types/{gen_type}.html')
+    # types/{gen_type}
+
+    return render(request, f'components/generator/types/{gen_type}.html')

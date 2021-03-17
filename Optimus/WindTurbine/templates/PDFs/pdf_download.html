@@ -1,3 +1,4 @@
+{% load static %}
 <title>PDF Download Test</title>
 
 <div id="footerContent">
@@ -7,12 +8,25 @@
 <h1>Download this file</h1>
 
 <br>
+
+<!-- <img src="{% static 'images/drivetrain.jpg' %}" alt="{% static 'images/drivetrain.jpg' %}" class="gen_card__image"> -->
+<!-- <img src="{{ photo }}" alt="{% static '/images/drivetrain.jpg' %}" class="gen_card__image"> -->
+LOGO:
+<!-- <img src="C:\Users\Jens\Desktop\Optimus\Optimus\Optimus\static\images\drivetrain.jpg" alt="{% static '/images/drivetrain.jpg' %}" class="gen_card__image"> -->
+<!-- <img src="{{ image }}" alt="{% static '/images/drivetrain.jpg' %}" class="gen_card__image"> -->
 <!-- <img src={{ image.path }} height="200px" alt=""> -->
 <img src={{ customer.logo.path }} height="200px" alt="drivetrain">
 <br>
 {{ customer.logo }}
 <br>
-{{ customer.logo.path }}
+<!-- C:\Users\Jens\Desktop\Optimus\Optimus\Optimus\static\images\drivetrain.jpg
+<br>
+<br> -->
+IMAGE
+{% static '/images/drivetrain.jpg' %}
+<img src="{% static '/images/drivetrain.jpg' %}" alt="{% static '/images/drivetrain.jpg' %}">
+
+<!-- {{ customer.logo.path }} -->
 
 <pdf:nextpage />
 <h1>Second page</h1>

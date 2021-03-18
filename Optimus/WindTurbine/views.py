@@ -1,12 +1,13 @@
-from django.shortcuts import render
-
 from django.http import HttpResponse
 from django.template.loader import get_template
+from django.shortcuts import render, redirect
 
 from .airfoils.aerodynamics import get_properties
 from .models import Airfoil
 
-# Create your views here.
+from json import dumps
+
+
 def home(request):
     return render(request, 'index.html')
 

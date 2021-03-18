@@ -1,40 +1,47 @@
 {% extends "base.html" %}
 {% block main %}
 <h1>Airfoil view</h1>
-<table class="table table-hover">
-    <thead class="thead-dark">
-      <tr>
-        <th scope="col">Number</th>
-        <th scope="col">Name</th>
-        <th scope="col">Thickness [%]</th>
-        <th scope="col">Thickness at % Chord</th>
-        <th scope="col">Camber [%]</th>
-        <th scope="col">Camber at % Chord</th>
-        <th scope="col">Actions</th>
-      </tr>
-    </thead>
 
-    <tbody>
-        {% for airfoil in airfoils %}
-            <tr>
-                <td class="col-md-1">{{ forloop.counter }}</td>
-                <td class="col-md-1">{{ airfoil.name }}</td>
-                <td class="col-md-1">{{ airfoil.thickness }}</td>
-                <td class="col-md-2">{{ airfoil.thickness_loc }}</td>
-                <td class="col-md-1">{{ airfoil.camber }}</td>
-                <td class="col-md-2">{{ airfoil.camber_loc }}</td>
-                <td class="col-md-1">
-                    <a href="/airfoils/{{airfoil.id}}">
-                        <button class="glyphicon glyphicon-eye-open btn btn-primary"></button>
-                    </a>
-                    <a href="#">
-                        <button class="glyphicon glyphicon-trash btn btn-danger"></button>
-                    </a>
-                    <!-- <button class="glyphicon glyphicon-eye-open btn btn-primary"></button> -->
-                    <!-- <button class="glyphicon glyphicon-trash btn btn-danger"></button> -->
-                </td>
-            </tr>
-        {% endfor %}
-    </tbody>
-  </table>
-  {% endblock main %}
+{% if airfoils %}
+    <table class="table table-hover">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col">Number</th>
+            <th scope="col">Name</th>
+            <th scope="col">Thickness [%]</th>
+            <th scope="col">Thickness at % Chord</th>
+            <th scope="col">Camber [%]</th>
+            <th scope="col">Camber at % Chord</th>
+            <th scope="col">Actions</th>
+        </tr>
+        </thead>
+
+        <tbody>
+            {% for airfoil in airfoils %}
+                <tr>
+                    <td class="col-md-1">{{ forloop.counter }}</td>
+                    <td class="col-md-1">{{ airfoil.name }}</td>
+                    <td class="col-md-1">{{ airfoil.thickness }}</td>
+                    <td class="col-md-2">{{ airfoil.thickness_loc }}</td>
+                    <td class="col-md-1">{{ airfoil.camber }}</td>
+                    <td class="col-md-2">{{ airfoil.camber_loc }}</td>
+                    <td class="col-md-1">
+                        <a href="/airfoils/{{airfoil.id}}">
+                            <button class="glyphicon glyphicon-eye-open btn btn-primary"></button>
+                        </a>
+                        <a href="/airfoils/{{airfoil.id}}/delete">
+                            <button class="glyphicon glyphicon-trash btn btn-danger"></button>
+                        </a>
+                        <!-- <button class="glyphicon glyphicon-eye-open btn btn-primary"></button> -->
+                        <!-- <button class="glyphicon glyphicon-trash btn btn-danger"></button> -->
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+<a href="/airfoils/add">
+    <button class="glyphicon glyphicon-plus btn btn-success">Add Airfoil</button>
+</a>
+{% endif %}
+{% endblock main %}

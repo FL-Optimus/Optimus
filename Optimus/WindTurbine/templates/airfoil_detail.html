@@ -39,7 +39,7 @@
   {% else %}
     There are no data for this airfoil yet.
     <a href="/airfoils">
-      <button class="btn btn-binary">Calculate</button>
+      <button class="glyphicon glyphicon-cog btn btn-success">Calculate</button>
     </a>
   {% endif %}
 
@@ -48,4 +48,48 @@
     <div class="Column">column 2</div>
     <div class="Column">column 3</div>
   </div>
+
+
+
+  <style>
+
+    .Row {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-gap: 20px;
+        min-height: 200px;
+    }
+
+    .Column {
+        background-color: #efefef;
+        border:1px solid #000;
+        color: #333;
+        text-decoration: none;
+    }
+
+    </style>
+
+
+
+<style>
+
+  .Row {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-gap: 20px;
+      min-height: 200px;
+  }
+
+  .Column {
+      background-color: #efefef;
+      border:1px solid #000;
+      color: #333;
+      text-decoration: none;
+  }
+
+  </style>
+  <div class="Row">
+      <div class="Column">{% include 'components/diagrams/cL_diagram.html' %}</div>
+  </div>
+
 {% endblock main %}

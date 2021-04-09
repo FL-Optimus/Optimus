@@ -68,12 +68,5 @@ def destroy(request, id):
 def detail_view(request, component):
     component = ContentType.objects.get(model='blade')
     blade = component.model_class()
-    print(blade.__dict__)
-    # try:
-    #     component.objects.all()
-    #     print('IT worked')
-    # except:
-    #     print('NOT WORKING')
-    #     pass
 
     return HttpResponse('Component found')

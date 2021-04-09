@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block main %}
+<form method="POST" class="post-form" action="/update/{{blade.id}}">
+        {% csrf_token %}
+    <div class="container">
+<br>
+    <div class="form-group row">
+    <label class="col-sm-1 col-form-label"></label>
+    <div class="col-sm-4">
+    <h3>Update Details</h3>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label class="col-sm-2 col-form-label">Blade Name:</label>
+    <div class="col-sm-4">
+        <input type="text" name="name" id="id_name" required maxlength="100" value="{{ blade.name }}" />
+    </div>
+  </div>
+    <div class="form-group row">
+    <label class="col-sm-2 col-form-label">Blade Length:</label>
+    <div class="col-sm-4">
+        <input type="text" name="length" id="id_length" required maxlength="254" value="{{ blade.length }}" />
+    </div>
+  </div>
+    <div class="form-group row">
+    <label class="col-sm-2 col-form-label">blade Weight:</label>
+    <div class="col-sm-4">
+        <input type="text" name="weight" id="id_weight" required maxlength="15" value="{{ blade.weight }}" />
+    </div>
+  </div>
+    <div class="form-group row">
+    <label class="col-sm-1 col-form-label"></label>
+    <div class="col-sm-4">
+    <button type="submit" class="btn btn-success">Update</button>
+    </div>
+  </div>
+    </div>
+</form>
+
+
+{% endblock main %}
+<form method="POST" class="post-form" action="/update/{{blade.id}}">
+  {% csrf_token %}
+  <input type="text" name="name" id="name" required maxlength="15" value="{{ blade.name }}" />
+  <input type="text" name="weight" id="weight" required maxlength="15" value="{{ blade.weight }}" />
+  <input type="text" name="length" id="length" required maxlength="15" value="{{ blade.length }}" />
+  <button type="submit" class="btn btn-success">Update</button>
+</form>

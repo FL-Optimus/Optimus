@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block main %}
+<table class="table table-striped table-bordered table-sm">
+    <thead class="thead-dark">
+    <tr>
+        <th>Blade ID</th>
+        <th>Blade Name</th>
+        <th>Blade Length</th>
+        <th>Blade Weight</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+{% for blade in blades %}
+    <tr>
+        <td>{{ blade.id }}</td>
+        <td>{{ blade.name }}</td>
+        <td>{{ blade.length }}</td>
+        <td>{{ blade.weight }}</td>
+        <td>
+            <a href="/edit/{{ blade.id }}"><span class="glyphicon glyphicon-pencil" >Edit</span></a>
+            <a href="/delete/{{ blade.id }}">Delete</a>
+        </td>
+    </tr>
+{% endfor %}
+    </tbody>
+</table>
+<br>
+<br>
+<a href="/blade" class="btn btn-primary">Add New Record</a>
+{% endblock main %}

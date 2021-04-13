@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block main %}
+
+<p>A list of all materials used for the wind turbine. Click on view to see more details.
+</p>
+{% for material in materials %}
+    {{ material }}
+{% endfor %}
+
+{% endblock main %}

@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load static %}
+{% block main %}
+
+
+    <p>The generator in a wind turbine converts the rotational energy from the rotor to electrical energy.</p>
+
+    <div class="gen_cards">
+        {% for type in types %}
+            <a href="/generators/{{type}}">
+                <div class="gen_card">
+                    <div class="gen_card__info"><b>{{type}}</b></div>
+                    <img src="{% static '/images/generator/' %}{{type}}.PNG" alt="" class="gen_card__image">
+                    <div class="gen_card__content">
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis est nam, iste nihil tenetur, soluta itaque fugiat suscipit odio voluptatum, quo at molestias. Veritatis ipsa quod minus, dolores incidunt deserunt.</p>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis est nam, iste nihil tenetur, soluta itaque fugiat suscipit odio voluptatum, quo at molestias. Veritatis ipsa quod minus, dolores incidunt deserunt.</p>
+                    </div>
+                </div>
+            </a>
+        {% endfor %}
+    </div>
+
+{% endblock main %}

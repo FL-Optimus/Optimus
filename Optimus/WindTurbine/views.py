@@ -4,20 +4,15 @@ from .models import Material
 def home(request):
     return render(request, 'index.html')
 
-def materials_view(request):
-    materials = Material.objects.all()
-
+def generator_list_view(request):
+    types = [f'Type{i}' for i in range(1,5)]
     context = {
-        'materials': materials
+        'types': types
     }
-    return render(request, 'materials.html', context)
+    return render(request, 'components/generator/generator.html', context)
 
-# def material_detail_view(request, name):
-#     try:
-#         material = Material.objects.get(name=name)
-#     except Material.DoesNotExist:
-#         material = None
-#     context = {
-#         'material': material
-#     }
-#     return render(request, 'material.html', context)
+def generator_detail_view(request, gen_type):
+    print(f'components/generator/types/{gen_type}.html')
+    # types/{gen_type}
+
+    return render(request, f'components/generator/types/{gen_type}.html')

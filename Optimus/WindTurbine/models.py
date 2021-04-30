@@ -1,4 +1,5 @@
 from django.db import models
+from django_mysql.models import JSONField
 
 
 class Material(models.Model):
@@ -8,6 +9,16 @@ class Material(models.Model):
     yield_strength = models.FloatField(verbose_name='yield strength')
     ultimate_strength = models.FloatField(verbose_name='ultimate strength')
     property = models.JSONField(null=True)
+# Create your models here.
+
+class Airfoil(models.Model):
+    name = models.CharField(max_length=255)
+    geometry = models.JSONField()
+    polar = models.JSONField()
+    thickness = models.DecimalField(max_digits=4, decimal_places=2)
+    thickness_loc = models.DecimalField(max_digits=4, decimal_places=2)
+    camber = models.DecimalField(max_digits=4, decimal_places=2)
+    camber_loc = models.DecimalField(max_digits=4, decimal_places=2)
 
     def __str__(self):
         return self.name
@@ -37,5 +48,12 @@ class Generator(models.Model):
     pole_pairs = models.IntegerField()
     image = models.ImageField(upload_to='generator')
 
+    length = models.DecimalField(max_digits=5, decimal_places=2)
+    weight = models.DecimalField(max_digits=5, decimal_places=2)
+    airfoil = models.ManyToManyField(Airfoil)
+
     def __str__(self):
         return self.name + ' ' + self.rated_power + ' MW'
+
+    class Meta:
+        ordering = ['name']

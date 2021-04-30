@@ -37,7 +37,12 @@ and follow the instructions. After successfully creating a super user, you can r
 For registering a model, firstly import it and then register it with admin.site.register(<model name>)
 
 # Building models
-Django is designed to use models. In 'models.py' in the app directory ('Windturbine') you can create models for the different parts of the turbine.
+Django is designed to use models. In 'models.py' in the app directory ('Windturbine') you can create models for the different parts of the turbine. To work in the shell, type
+```python
+python manage.py shell
+```
+and import the models with 'from WindTurbine import <model name>'
+
 
 # Changing code
 For changing code, it is good practice to use different branches and not directly push it to the master code.

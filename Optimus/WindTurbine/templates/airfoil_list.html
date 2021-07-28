@@ -1,10 +1,10 @@
 {% extends "base.html" %}
 {% block main %}
-<h1>Airfoil view</h1>
+<h1>Airfoil Overview</h1>
 
 {% if airfoils %}
-    <table class="table table-hover">
-        <thead class="thead-dark">
+    <table class="table">
+        <thead class="thead-light">
         <tr>
             <th scope="col">Number</th>
             <th scope="col">Name</th>
@@ -21,16 +21,16 @@
                 <tr>
                     <td class="col-md-1">{{ forloop.counter }}</td>
                     <td class="col-md-1">{{ airfoil.name }}</td>
-                    <td class="col-md-1">{{ airfoil.thickness }}</td>
-                    <td class="col-md-2">{{ airfoil.thickness_loc }}</td>
-                    <td class="col-md-1">{{ airfoil.camber }}</td>
-                    <td class="col-md-2">{{ airfoil.camber_loc }}</td>
+                    <td class="col-md-1">{{ airfoil.thickness.value }}</td>
+                    <td class="col-md-2">{{ airfoil.thickness.location }}</td>
+                    <td class="col-md-1">{{ airfoil.camber.value }}</td>
+                    <td class="col-md-2">{{ airfoil.camber.location }}</td>
                     <td class="col-md-1">
                         <a href="/airfoils/{{airfoil.id}}">
-                            <button class="glyphicon glyphicon-eye-open btn btn-primary"></button>
+                            <button class="glyphicon glyphicon-eye-open btn btn-primary" title="Go to airfoil"></button>
                         </a>
                         <a href="/airfoils/{{airfoil.id}}/delete">
-                            <button class="glyphicon glyphicon-trash btn btn-danger"></button>
+                            <button class="glyphicon glyphicon-trash btn btn-danger" title="Delete airfoil"></button>
                         </a>
                         <!-- <button class="glyphicon glyphicon-eye-open btn btn-primary"></button> -->
                         <!-- <button class="glyphicon glyphicon-trash btn btn-danger"></button> -->
@@ -39,9 +39,34 @@
             {% endfor %}
         </tbody>
     </table>
-{% else %}
-<a href="/airfoils/add">
-    <button class="glyphicon glyphicon-plus btn btn-success">Add Airfoil</button>
-</a>
 {% endif %}
+
+{% if form %}
+Search for an airfoil name
+<div>
+  <form method="post">
+    {% csrf_token %}
+    {{ form }}
+    <button type="submit" class="btn btn-primary ">Submit</button>
+  </form>
+</div>
+{% endif %}
+
+{% if not circular %}
+    <a href="airfoils/circular" class="btn btn-primary">Create circular airfoil</a>
+{% endif %}
+
+{% if search %}
+<div class="search" style="background: grey;">
+  {{ search }}
+  <a href="airfoils/{{search}}" class="btn btn-primary">Add airfoil {{ search }} to database</a>
+</div>
+{% endif %}
+
+
+<div class="search">
+  <a href="airfoils/pdf" class="btn btn-primary">Download airfoil infos</a>
+</div>
+
+
 {% endblock main %}

@@ -1,4 +1,7 @@
+import json
+
 from django.db import models
+from django.db.models.deletion import CASCADE
 from django_mysql.models import JSONField
 
 
@@ -9,19 +12,6 @@ class Material(models.Model):
     yield_strength = models.FloatField(verbose_name='yield strength')
     ultimate_strength = models.FloatField(verbose_name='ultimate strength')
     property = models.JSONField(null=True)
-# Create your models here.
-
-class Airfoil(models.Model):
-    name = models.CharField(max_length=255)
-    geometry = models.JSONField()
-    polar = models.JSONField()
-    thickness = models.DecimalField(max_digits=4, decimal_places=2)
-    thickness_loc = models.DecimalField(max_digits=4, decimal_places=2)
-    camber = models.DecimalField(max_digits=4, decimal_places=2)
-    camber_loc = models.DecimalField(max_digits=4, decimal_places=2)
-
-    def __str__(self):
-        return self.name
 
 
 class Blade(models.Model):
@@ -38,6 +28,50 @@ class Blade(models.Model):
 
     def __str__(self):
         return self.name
+
+class Airfoil(models.Model):
+    name = models.CharField(max_length=255)
+    geometry = models.JSONField(blank=True, null=True)
+    polar = models.JSONField(blank=True, null=True)
+    # thickness = models.DecimalField(max_digits=4, decimal_places=2, blank=True, null=True)
+    # thickness_loc = models.DecimalField(max_digits=4, decimal_places=2, blank=True, null=True)
+    # camber = models.DecimalField(max_digits=4, decimal_places=2, blank=True, null=True)
+    # camber_loc = models.DecimalField(max_digits=4, decimal_places=2, blank=True, null=True)
+    blade = models.ForeignKey(Blade, on_delete=CASCADE)
+
+    def split_airfoil(self):
+        x = (json.loads(self.geometry)['x'])
+        y = (json.loads(self.geometry)['y'])
+
+        end_value = int(len(x)/2)
+        positive_part = y[:end_value]
+        negative_part = y[end_value:][::-1]
+        return list(zip(positive_part, negative_part))
+
+    def camber(self):
+        data = self.split_airfoil()
+        camber = [(a+b)/2 for a,b in data]
+        value = f'{max(camber) * 100 :.2f}'
+        location = camber.index(max(camber))        
+        location = f'{100- camber.index(max(camber))/len(data)*100 :.2f}'
+        return {'value': value, 'location': location}
+
+    def thickness(self):
+        data = self.split_airfoil()
+        thickness = [a-b for a,b in data]
+        value = f'{max(thickness) * 100 :.2f}'
+        location = f'{100- thickness.index(max(thickness))/len(data)*100 :.2f}'
+        return {'value': value,  'location': location}      
+
+    def polars(self):
+        pass
+
+    def __str__(self):
+        if self.name:
+            return self.name
+
+
+
 
 class Generator(models.Model):
     name = models.CharField(max_length=255)

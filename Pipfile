@@ -9,6 +9,9 @@ verify_ssl = true
 django = "*"
 django-mysql = "*"
 pandas = "*"
+requests = "*"
+matplotlib = "*"
+xhtml2pdf = "*"
 
 [requires]
 python_version = "3"

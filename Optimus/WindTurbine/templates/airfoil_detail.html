@@ -4,8 +4,8 @@
 {% block main %}
   <h1>Airfoil Description</h1>
   <p>{{airfoil}}</p>
-  {% if properties %}
-    <table class="table table-hover">
+  {% if airfoil %}
+    <table class="table">
       <thead class="thead-dark">
         <tr>
           <th scope="col">Name</th>
@@ -20,10 +20,10 @@
 
         <tr>
           <td class="col-md-1">{{ airfoil.name }}</td>
-          <td class="col-md-2">{{ properties.thickness }}</td>
-          <td class="col-md-2">{{ properties.thickness_position }}</td>
-          <td class="col-md-2">{{ properties.camber }}</td>
-          <td class="col-md-2">{{ properties.camber_position }}</td>
+          <td class="col-md-2">{{ airfoil.thickness.value }}</td>
+          <td class="col-md-2">{{ airfoil.thickness.location }}</td>
+          <td class="col-md-2">{{ airfoil.camber.value }}</td>
+          <td class="col-md-2">{{ airfoil.camber.location }}</td>
           <td class="col-md-2">
             <a href="#">
               <button class="glyphicon glyphicon-pencil btn btn-success"></button>
@@ -43,53 +43,28 @@
     </a>
   {% endif %}
 
-  <div class="Row">
-    <div class="Column">column 1</div>
-    <div class="Column">column 2</div>
-    <div class="Column">column 3</div>
-  </div>
+  <a href="/airfoils/{{ airfoil.id }}/calculate">
+    <button class="glyphicon glyphicon-cog btn btn-success">Calculate</button>
+  </a>
 
+  <a href="/airfoils/{{ airfoil.id }}/read">
+    <button class="glyphicon glyphicon-cog btn btn-success">Read</button>
+  </a>
 
-
-  <style>
-
-    .Row {
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
-        grid-gap: 20px;
-        min-height: 200px;
-    }
-
-    .Column {
-        background-color: #efefef;
-        border:1px solid #000;
-        color: #333;
-        text-decoration: none;
-    }
-
-    </style>
-
-
-
-<style>
-
-  .Row {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      grid-gap: 20px;
-      min-height: 200px;
-  }
-
-  .Column {
-      background-color: #efefef;
-      border:1px solid #000;
-      color: #333;
-      text-decoration: none;
-  }
-
-  </style>
-  <div class="Row">
-      <div class="Column">{% include 'components/diagrams/cL_diagram.html' %}</div>
-  </div>
+  {% if charts %}
+    <div class="Row">
+      {% for chart in charts %}
+        <div id="Column">
+          <p>{{chart.name}}</p>
+          <img src="data:image/png;base64, {{chart.chart|safe}}" alt="" class="graph">
+        </div>
+      {% endfor %}
+      <div class="Column">column 3</div>
+    </div>
+  {% endif %}
+    
 
 {% endblock main %}
+  <!-- <div class="Row">
+      <div class="Column">{% include 'components/diagrams/cL_diagram.html' %}</div>
+  </div> -->
